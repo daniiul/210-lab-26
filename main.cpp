@@ -1,4 +1,4 @@
-// COMSC-210 | 210-lab-25 | Daniil Malakhov
+// COMSC-210 | 210-lab-26 | Daniil Malakhov
 // IDE used: Codeblocks
 #include <iostream>
 #include <chrono>
