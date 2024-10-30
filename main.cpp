@@ -62,11 +62,34 @@ int main() {
         deleteFile(i, 2, data, vec, lis, se);
     }
 
+    int averages[4][3];
+
+    // summing up all values
+    for (int i = 0; i < 15; i++)
+    {
+        for(int j = 0; j < 4; j++)
+        {
+            for(int k = 0; k < 3; k++)
+            {
+                averages[j][k] += data[i][j][k];
+            }
+        }
+    }
+
+    // averaging all values
+    for(int j = 0; j < 4; j++)
+    {
+        for(int k = 0; k < 3; k++)
+        {
+            averages[j][k] /= 15;
+        }
+    }
+
     cout << setw(10) << right << "Operation" << setw(10) << right << "Vector" << setw(10) << right << "List" << setw(10) << right << "Set" << endl;
-    cout << setw(10) << right << "Read" << setw(10) << right << timeRead[0] << setw(10) << right << timeRead[1] << setw(10) << right << timeRead[2] << endl;
-    cout << setw(10) << right << "Sort" << setw(10) << right << timeSort[0] << setw(10) << right << timeSort[1] << setw(10) << right << timeSort[2] << endl;
-    cout << setw(10) << right << "Insert" << setw(10) << right << timeInsert[0] << setw(10) << right << timeInsert[1] << setw(10) << right << timeInsert[2] << endl;
-    cout << setw(10) << right << "Delete" << setw(10) << right << timeDelete[0] << setw(10) << right << timeDelete[1] << setw(10) << right << timeDelete[2] << endl;
+    cout << setw(10) << right << "Read" << setw(10) << right << averages[0][0] << setw(10) << right << averages[0][1] << setw(10) << right << averages[0][2] << endl;
+    cout << setw(10) << right << "Sort" << setw(10) << right << averages[1][0] << setw(10) << right << averages[1][1] << setw(10) << right << averages[1][2] << endl;
+    cout << setw(10) << right << "Insert" << setw(10) << right << averages[2][0] << setw(10) << right << averages[2][1] << setw(10) << right << averages[2][2] << endl;
+    cout << setw(10) << right << "Delete" << setw(10) << right << averages[3][0] << setw(10) << right << averages[3][1] << setw(10) << right << averages[3][2] << endl;
 
 
 
@@ -176,6 +199,7 @@ void insertFile(int run, int i, int(&data)[15][4][3], vector<string>& vec, list<
 
     // Calculate duration
     auto duration = duration_cast<microseconds>(end - start);
+    cout << duration.count() << endl;
 
     data[run][2][i] = duration.count();
 }
