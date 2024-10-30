@@ -64,8 +64,6 @@ int main() {
 
     int averages[4][3];
 
-    cout << "bug" << endl;
-
     // summing up all values
     for (int i = 0; i < 15; i++)
     {
@@ -78,6 +76,13 @@ int main() {
         }
     }
 
+    for (int i = 0; i < 15; i++)
+    {
+        cout << data[i][2][0] << endl;
+    }
+
+    cout << averages[2][0] << endl;
+
     // averaging all values
     for(int j = 0; j < 4; j++)
     {
@@ -86,7 +91,6 @@ int main() {
             averages[j][k] /= 15;
         }
     }
-
 
     cout << setw(10) << right << "Operation" << setw(10) << right << "Vector" << setw(10) << right << "List" << setw(10) << right << "Set" << endl;
     cout << setw(10) << right << "Read" << setw(10) << right << averages[0][0] << setw(10) << right << averages[0][1] << setw(10) << right << averages[0][2] << endl;
@@ -140,8 +144,6 @@ void readFile(int run, int i, int(&data)[15][4][3], vector<string>& vec, list<st
     // Calculate duration
     auto duration = duration_cast<microseconds>(end - start);
 
-    cout << duration.count() << endl;
-
     data[run][0][i] = duration.count();
     inputFile.clear();
     inputFile.seekg(0);
@@ -156,6 +158,7 @@ void sortFile(int run, int i, int(&data)[15][4][3], vector<string>& vec, list<st
     if (i == 0)
     {
         sort(vec.begin(), vec.end());
+
     }
     if (i == 1)
     {
