@@ -62,7 +62,7 @@ int main() {
         deleteFile(i, 2, data, vec, lis, se);
     }
 
-    int averages[4][3];
+    int averages[4][3] = { 0 };
 
     // summing up all values
     for (int i = 0; i < 15; i++)
@@ -72,16 +72,10 @@ int main() {
             for(int k = 0; k < 3; k++)
             {
                 averages[j][k] += data[i][j][k];
+
             }
         }
     }
-
-    for (int i = 0; i < 15; i++)
-    {
-        cout << data[i][2][0] << endl;
-    }
-
-    cout << averages[2][0] << endl;
 
     // averaging all values
     for(int j = 0; j < 4; j++)
