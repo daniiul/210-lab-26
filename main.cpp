@@ -12,6 +12,11 @@
 using namespace std;
 using namespace std::chrono;
 
+void readFile(int, int[][][]&);
+void sortFile(int, int[][][]&);
+void insertFile(int, vector<vector<vector<int>>>&);
+void deleteFile(int, vector<vector<vector<int>>>&);
+
 int main() {
 
     ifstream inputFile("codes.txt");
@@ -20,6 +25,9 @@ int main() {
     {
         cout << "Error! Can't open File!";
     }
+
+
+    int data[15][4][3];
 
     vector<int> timeRead;
     vector<int> timeSort;
@@ -175,6 +183,44 @@ int main() {
 
 
     return 0;
+}
+
+void readFile(int, vector<vector<vector<int>>>& data)
+{
+    // Start timing
+    auto start = high_resolution_clock::now();
+
+    // Example loop to measure
+    if (i == 0)
+    {
+        string temp;
+        while(getline(inputFile, temp))
+            vec.push_back(temp);
+    }
+    if (i == 1)
+    {
+
+        string temp;
+        while(getline(inputFile, temp))
+            lis.push_back(temp);
+    }
+    if (i == 2)
+    {
+
+        string temp;
+        while(getline(inputFile, temp))
+            se.insert(temp);
+    }
+
+    // End timing
+    auto end = high_resolution_clock::now();
+
+    // Calculate duration
+    auto duration = duration_cast<microseconds>(end - start);
+
+    timeRead.push_back(duration.count());
+    inputFile.clear();
+    inputFile.seekg(0);
 }
 
 /* syntax examples:
