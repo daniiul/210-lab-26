@@ -12,19 +12,13 @@
 using namespace std;
 using namespace std::chrono;
 
-void readFile(int, int[][][]&);
-void sortFile(int, int[][][]&);
-void insertFile(int, vector<vector<vector<int>>>&);
-void deleteFile(int, vector<vector<vector<int>>>&);
+void readFile(int, int, int(&data)[15][4][3]);
+void sortFile(int, int, int(&data)[15][4][3]);
+void insertFile(int, int, int(&data)[15][4][3]);
+void deleteFile(int, int, int(&data)[15][4][3]);
 
 int main() {
 
-    ifstream inputFile("codes.txt");
-
-    if(!inputFile.is_open())
-    {
-        cout << "Error! Can't open File!";
-    }
 
 
     int data[15][4][3];
@@ -39,42 +33,11 @@ int main() {
     set<string> se;
 
     // reads all the codes in text files into vector, list, and set
-    for(int i = 0; i < 3; i++)
+    for(int i = 0; i < 15; i++)
     {
-        // Start timing
-        auto start = high_resolution_clock::now();
-
-        // Example loop to measure
-        if (i == 0)
-        {
-            string temp;
-            while(getline(inputFile, temp))
-                vec.push_back(temp);
-        }
-        if (i == 1)
-        {
-
-            string temp;
-            while(getline(inputFile, temp))
-                lis.push_back(temp);
-        }
-        if (i == 2)
-        {
-
-            string temp;
-            while(getline(inputFile, temp))
-                se.insert(temp);
-        }
-
-        // End timing
-        auto end = high_resolution_clock::now();
-
-        // Calculate duration
-        auto duration = duration_cast<microseconds>(end - start);
-
-        timeRead.push_back(duration.count());
-        inputFile.clear();
-        inputFile.seekg(0);
+        readFile(i, 0, data);
+        readFile(i, 1, data);
+        readFile(i, 2, data);
     }
 
     // sorts the vectors and list
@@ -185,8 +148,16 @@ int main() {
     return 0;
 }
 
-void readFile(int, vector<vector<vector<int>>>& data)
+void readFile(int run, int i, int(&data)[15][4][3])
 {
+
+    ifstream inputFile("codes.txt");
+
+    if(!inputFile.is_open())
+    {
+        cout << "Error! Can't open File!";
+    }
+
     // Start timing
     auto start = high_resolution_clock::now();
 
@@ -218,7 +189,7 @@ void readFile(int, vector<vector<vector<int>>>& data)
     // Calculate duration
     auto duration = duration_cast<microseconds>(end - start);
 
-    timeRead.push_back(duration.count());
+    data[run][0][i] = duration.count();
     inputFile.clear();
     inputFile.seekg(0);
 }
