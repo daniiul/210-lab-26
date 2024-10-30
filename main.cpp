@@ -19,12 +19,7 @@ void deleteFile(int, int, int(&data)[15][4][3], vector<string>&, list<string>&, 
 
 int main() {
 
-    int data[15][4][3];
-
-    vector<int> timeRead;
-    vector<int> timeSort;
-    vector<int> timeInsert;
-    vector<int> timeDelete;
+    int data[15][4][3] = { 0 };
 
     vector<string> vec;
     list<string> lis;
@@ -72,7 +67,6 @@ int main() {
             for(int k = 0; k < 3; k++)
             {
                 averages[j][k] += data[i][j][k];
-
             }
         }
     }
@@ -193,7 +187,9 @@ void insertFile(int run, int i, int(&data)[15][4][3], vector<string>& vec, list<
     }
     if (i == 2)
     {
-        se.insert("TESTCODE");
+        auto it = se.begin();
+        advance(it, 10000);
+        se.insert(it, "TESTCODE");
     }
 
     // End timing
